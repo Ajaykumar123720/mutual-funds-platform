@@ -94,23 +94,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({ message: 'Internal server error', error: err.message });
 });
 
-// Start the server
-const server = app.listen(PORT, () => {
-    console.log(`\n✅ Server is running on http://localhost:${PORT}`);
-    console.log(`\n📍 Access Points:`);
-    console.log(`   🏠 Homepage: http://localhost:${PORT}/`);
-    console.log(`   💼 Investor Dashboard: http://localhost:${PORT}/investor`);
-    console.log(`   👨‍💼 Advisor Portal: http://localhost:${PORT}/advisor`);
-    console.log(`   🔧 Admin Console: http://localhost:${PORT}/admin`);
-    console.log(`   📊 Analyst Dashboard: http://localhost:${PORT}/analytics`);
-    console.log(`   🏥 Health Check: http://localhost:${PORT}/health`);
-    console.log(`\n📁 Base Directory: ${baseDir}\n`);
-});
-
-// Handle graceful shutdown
-process.on('SIGTERM', () => {
-    console.log('SIGTERM signal received: closing HTTP server');
-    server.close(() => {
-        console.log('HTTP server closed');
-    });
-});
+// Export the app for serverless deployment (Vercel)
+module.exports = app;
