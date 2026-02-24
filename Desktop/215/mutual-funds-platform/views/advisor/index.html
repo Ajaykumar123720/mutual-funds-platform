@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor Portal - Mutual Funds Platform</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Advisor Portal</h2>
+                <button class="toggle-sidebar" id="sidebarToggle">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="showSection('overview')">📊 Overview</button>
+                <button class="nav-btn" onclick="showSection('clients')">👥 My Clients</button>
+                <button class="nav-btn" onclick="showSection('portfolio')">📈 Portfolio Review</button>
+                <button class="nav-btn" onclick="showSection('content')">📝 Create Content</button>
+                <button class="nav-btn" onclick="showSection('recommendations')">💡 Recommendations</button>
+                <button class="nav-btn" onclick="showSection('profile')">👤 Profile</button>
+                <button class="nav-btn" onclick="logout()">🚪 Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Advisor Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, Priya Singh</span>
+                    <img src="/assets/avatar.png" alt="Advisor" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%2399ccff%22/%3E%3C/svg%3E'">
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2>Your Performance</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Clients</h3>
+                        <p class="stat-value">42</p>
+                        <p class="stat-label">Active clients</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>AUM Managed</h3>
+                        <p class="stat-value">₹12.5 Cr</p>
+                        <p class="stat-label">Assets under management</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Avg Return</h3>
+                        <p class="stat-value">+15.8%</p>
+                        <p class="stat-label">Client portfolio returns</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Client Satisfaction</h3>
+                        <p class="stat-value">4.8/5</p>
+                        <p class="stat-label">Average rating</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clients Section -->
+            <section id="clients" class="content-section">
+                <h2>My Clients</h2>
+                <div class="management-controls">
+                    <input type="text" placeholder="Search clients..." class="search-input">
+                    <button onclick="addNewClient()">+ Add Client</button>
+                </div>
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Relationship</th>
+                            <th>Portfolio Value</th>
+                            <th>Last Review</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rajesh Kumar</td>
+                            <td>Conservative</td>
+                            <td>₹15,45,000</td>
+                            <td>20 Feb 2026</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="reviewClient('RC001')">Review</button> <button onclick="contactClient('RC001')">Contact</button></td>
+                        </tr>
+                        <tr>
+                            <td>Meera Sharma</td>
+                            <td>Aggressive</td>
+                            <td>₹23,60,000</td>
+                            <td>18 Feb 2026</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="reviewClient('MS001')">Review</button> <button onclick="contactClient('MS001')">Contact</button></td>
+                        </tr>
+                        <tr>
+                            <td>Vikram Singh</td>
+                            <td>Moderate</td>
+                            <td>₹8,75,000</td>
+                            <td>15 Feb 2026</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="reviewClient('VS001')">Review</button> <button onclick="contactClient('VS001')">Contact</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Portfolio Review Section -->
+            <section id="portfolio" class="content-section">
+                <h2>Client Portfolio Review</h2>
+                <div class="review-controls">
+                    <select class="select-fund" id="clientSelect">
+                        <option>Select Client</option>
+                        <option>Rajesh Kumar</option>
+                        <option>Meera Sharma</option>
+                        <option>Vikram Singh</option>
+                    </select>
+                    <button onclick="loadClientPortfolio()">Load Portfolio</button>
+                </div>
+                <div class="portfolio-summary">
+                    <h3>Portfolio Composition</h3>
+                    <table>
+                        <tr>
+                            <td>Equity Allocation</td>
+                            <td>65%</td>
+                        </tr>
+                        <tr>
+                            <td>Debt Allocation</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>Liquid Allocation</td>
+                            <td>5%</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Content Creation Section -->
+            <section id="content" class="content-section">
+                <h2>Create Advisory Content</h2>
+                <div class="content-form">
+                    <div class="form-group">
+                        <label>Content Type:</label>
+                        <select>
+                            <option>Market Insight</option>
+                            <option>Investment Tip</option>
+                            <option>Fund Analysis</option>
+                            <option>Webinar Announcement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" placeholder="Enter content title">
+                    </div>
+                    <div class="form-group">
+                        <label>Content:</label>
+                        <textarea placeholder="Write your advisory content here..." rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Audience:</label>
+                        <input type="text" placeholder="e.g., All Clients, Equity Investors">
+                    </div>
+                    <button class="submit-btn" onclick="publishContent()">Publish Content</button>
+                </div>
+            </section>
+
+            <!-- Recommendations Section -->
+            <section id="recommendations" class="content-section">
+                <h2>Fund Recommendations</h2>
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <h3>Top Equity Funds</h3>
+                        <ul>
+                            <li>Axis Bluechip Fund - 18.5% return</li>
+                            <li>Kotak Emerging Equities - 22.1% return</li>
+                            <li>HDFC Top 200 Fund - 16.8% return</li>
+                        </ul>
+                        <button onclick="shareRecommendation('equity')">Share with Clients</button>
+                    </div>
+                    <div class="recommendation-card">
+                        <h3>Best Balanced Funds</h3>
+                        <ul>
+                            <li>HDFC Balanced Fund - 12.3% return</li>
+                            <li>ICICI Balanced Fund - 11.8% return</li>
+                            <li>Axis Balanced Fund - 13.2% return</li>
+                        </ul>
+                        <button onclick="shareRecommendation('balanced')">Share with Clients</button>
+                    </div>
+                    <div class="recommendation-card">
+                        <h3>Safe Liquid Funds</h3>
+                        <ul>
+                            <li>ICICI Liquid Fund - 5.2% return</li>
+                            <li>HDFC Liquid Fund - 5.0% return</li>
+                            <li>Axis Liquid Fund - 4.8% return</li>
+                        </ul>
+                        <button onclick="shareRecommendation('liquid')">Share with Clients</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <h2>Advisor Profile</h2>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" value="Priya Singh" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" value="priya@advisors.com" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>License Number:</label>
+                        <input type="text" value="ADV-2020-45832" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Experience (years):</label>
+                        <input type="number" value="8" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Specialization:</label>
+                        <input type="text" value="Equity & Balanced Funds" readonly>
+                    </div>
+                    <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+</html>

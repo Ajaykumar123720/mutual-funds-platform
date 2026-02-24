@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard - Mutual Funds Platform</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Investor Portal</h2>
+                <button class="toggle-sidebar" id="sidebarToggle">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="showSection('overview')">📊 Overview</button>
+                <button class="nav-btn" onclick="showSection('funds')">💰 Browse Funds</button>
+                <button class="nav-btn" onclick="showSection('portfolio')">📈 My Portfolio</button>
+                <button class="nav-btn" onclick="showSection('comparison')">⚖️ Compare Funds</button>
+                <button class="nav-btn" onclick="showSection('transactions')">📋 Transactions</button>
+                <button class="nav-btn" onclick="showSection('profile')">👤 Profile</button>
+                <button class="nav-btn" onclick="logout()">🚪 Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Investor Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, Investor</span>
+                    <img src="/assets/avatar.png" alt="User" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23666%22/%3E%3C/svg%3E'">
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2>Portfolio Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Invested</h3>
+                        <p class="stat-value">₹5,25,000</p>
+                        <p class="stat-label">Across 8 funds</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Current Value</h3>
+                        <p class="stat-value">₹6,12,450</p>
+                        <p class="stat-label">+16.6% gain</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>YTD Returns</h3>
+                        <p class="stat-value">+12.8%</p>
+                        <p class="stat-label">Strong performance</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Next Review</h3>
+                        <p class="stat-value">15 Mar 2026</p>
+                        <p class="stat-label">Quarterly rebalance</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Browse Funds Section -->
+            <section id="funds" class="content-section">
+                <h2>Browse Mutual Funds</h2>
+                <div class="filters">
+                    <input type="text" placeholder="Search funds..." class="search-input">
+                    <select class="filter-select">
+                        <option>All Categories</option>
+                        <option>Equity Funds</option>
+                        <option>Debt Funds</option>
+                        <option>Balanced Funds</option>
+                        <option>Liquid Funds</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Risk Levels</option>
+                        <option>Low Risk</option>
+                        <option>Medium Risk</option>
+                        <option>High Risk</option>
+                    </select>
+                </div>
+                <div class="funds-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fund Name</th>
+                                <th>NAV</th>
+                                <th>1Y Return</th>
+                                <th>Risk Level</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Axis Bluechip Fund</td>
+                                <td>₹152.45</td>
+                                <td>+18.5%</td>
+                                <td><span class="risk-high">High</span></td>
+                                <td>Equity</td>
+                                <td><button onclick="investFund('Axis Bluechip')">Invest</button></td>
+                            </tr>
+                            <tr>
+                                <td>HDFC Balanced Fund</td>
+                                <td>₹89.32</td>
+                                <td>+12.3%</td>
+                                <td><span class="risk-medium">Medium</span></td>
+                                <td>Balanced</td>
+                                <td><button onclick="investFund('HDFC Balanced')">Invest</button></td>
+                            </tr>
+                            <tr>
+                                <td>ICICI Prudential Liquid Fund</td>
+                                <td>₹1,245.67</td>
+                                <td>+5.2%</td>
+                                <td><span class="risk-low">Low</span></td>
+                                <td>Liquid</td>
+                                <td><button onclick="investFund('ICICI Liquid')">Invest</button></td>
+                            </tr>
+                            <tr>
+                                <td>Kotak Emerging Equities</td>
+                                <td>₹178.90</td>
+                                <td>+22.1%</td>
+                                <td><span class="risk-high">High</span></td>
+                                <td>Equity</td>
+                                <td><button onclick="investFund('Kotak Emerging')">Invest</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="content-section">
+                <h2>My Investment Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="fund-card">
+                        <h3>Axis Bluechip Fund</h3>
+                        <p class="card-label">Units: 500</p>
+                        <p class="card-value">₹76,225</p>
+                        <p class="card-return">+15% return</p>
+                        <button onclick="manageInvestment('Axis')">Manage</button>
+                    </div>
+                    <div class="fund-card">
+                        <h3>HDFC Balanced Fund</h3>
+                        <p class="card-label">Units: 1200</p>
+                        <p class="card-value">₹107,184</p>
+                        <p class="card-return">+11.5% return</p>
+                        <button onclick="manageInvestment('HDFC')">Manage</button>
+                    </div>
+                    <div class="fund-card">
+                        <h3>ICICI Prudential Liquid</h3>
+                        <p class="card-label">Units: 2000</p>
+                        <p class="card-value">₹245,340</p>
+                        <p class="card-return">+5.8% return</p>
+                        <button onclick="manageInvestment('ICICI')">Manage</button>
+                    </div>
+                    <div class="fund-card">
+                        <h3>Kotak Emerging Equities</h3>
+                        <p class="card-label">Units: 800</p>
+                        <p class="card-value">₹143,120</p>
+                        <p class="card-return">+19% return</p>
+                        <button onclick="manageInvestment('Kotak')">Manage</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Section -->
+            <section id="comparison" class="content-section">
+                <h2>Compare Funds</h2>
+                <div class="comparison-controls">
+                    <select class="select-fund" id="fund1">
+                        <option>Select Fund 1</option>
+                        <option>Axis Bluechip Fund</option>
+                        <option>HDFC Balanced Fund</option>
+                        <option>ICICI Liquid Fund</option>
+                        <option>Kotak Emerging Equities</option>
+                    </select>
+                    <select class="select-fund" id="fund2">
+                        <option>Select Fund 2</option>
+                        <option>Axis Bluechip Fund</option>
+                        <option>HDFC Balanced Fund</option>
+                        <option>ICICI Liquid Fund</option>
+                        <option>Kotak Emerging Equities</option>
+                    </select>
+                    <button onclick="compareSelected()">Compare</button>
+                </div>
+                <div class="comparison-results">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Fund 1</th>
+                                <th>Fund 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 Year Return</td>
+                                <td>+18.5%</td>
+                                <td>+12.3%</td>
+                            </tr>
+                            <tr>
+                                <td>3 Year Return</td>
+                                <td>+15.2%</td>
+                                <td>+11.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Risk Rating</td>
+                                <td>High</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Expense Ratio</td>
+                                <td>0.65%</td>
+                                <td>0.75%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions" class="content-section">
+                <h2>Transaction History</h2>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Fund Name</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>24 Feb 2026</td>
+                            <td>Axis Bluechip Fund</td>
+                            <td>Purchase</td>
+                            <td>₹50,000</td>
+                            <td><span class="status-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>20 Feb 2026</td>
+                            <td>HDFC Balanced Fund</td>
+                            <td>Purchase</td>
+                            <td>₹30,000</td>
+                            <td><span class="status-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>15 Feb 2026</td>
+                            <td>Kotak Emerging Equities</td>
+                            <td>Purchase</td>
+                            <td>₹45,000</td>
+                            <td><span class="status-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <h2>Investor Profile</h2>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" value="Rajesh Kumar" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" value="rajesh@example.com" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" value="+91 9876543210" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>KYC Status:</label>
+                        <input type="text" value="Verified" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Risk Profile:</label>
+                        <input type="text" value="Moderate" readonly>
+                    </div>
+                    <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+</html>

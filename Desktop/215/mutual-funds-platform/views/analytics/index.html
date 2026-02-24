@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Mutual Funds Platform</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Analytics Dashboard</h2>
+                <button class="toggle-sidebar" id="sidebarToggle">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="showSection('overview')">📊 Overview</button>
+                <button class="nav-btn" onclick="showSection('trends')">📈 Market Trends</button>
+                <button class="nav-btn" onclick="showSection('performance')">⭐ Fund Performance</button>
+                <button class="nav-btn" onclick="showSection('analysis')">🔍 Detailed Analysis</button>
+                <button class="nav-btn" onclick="showSection('reports')">📋 Reports</button>
+                <button class="nav-btn" onclick="showSection('data')">💾 Data Management</button>
+                <button class="nav-btn" onclick="logout()">🚪 Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Analytics Dashboard</h1>
+                <div class="user-info">
+                    <span>Data Analyst</span>
+                    <img src="/assets/avatar.png" alt="Analyst" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23ff9999%22/%3E%3C/svg%3E'">
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2>Market Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Funds Tracked</h3>
+                        <p class="stat-value">1,245</p>
+                        <p class="stat-label">Across all categories</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Avg Market Return</h3>
+                        <p class="stat-value">+14.2%</p>
+                        <p class="stat-label">Year-to-date</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Market Volatility</h3>
+                        <p class="stat-value">12.5%</p>
+                        <p class="stat-label">Current VIX</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Data Points</h3>
+                        <p class="stat-value">5.2M</p>
+                        <p class="stat-label">Last 30 days</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trends Section -->
+            <section id="trends" class="content-section">
+                <h2>Market Trends Analysis</h2>
+                <div class="analysis-controls">
+                    <select class="select-fund">
+                        <option>Equity Market</option>
+                        <option>Debt Market</option>
+                        <option>Gold Market</option>
+                        <option>International Markets</option>
+                    </select>
+                    <select class="select-fund">
+                        <option>Last 30 Days</option>
+                        <option>Last 3 Months</option>
+                        <option>Last 6 Months</option>
+                        <option>Last 1 Year</option>
+                    </select>
+                    <button onclick="generateChart()">Generate Chart</button>
+                </div>
+                <div class="chart-container">
+                    <h3>Price Movement Trend</h3>
+                    <svg viewBox="0 0 400 200" style="width: 100%; height: 300px;">
+                        <polyline points="0,180 20,160 40,140 60,120 80,100 100,90 120,70 140,60 160,50 180,45 200,40 220,35 240,40 260,50 280,60 300,70 320,80 340,90 360,100 380,110" 
+                            fill="none" stroke="#4CAF50" stroke-width="2"/>
+                        <polyline points="0,180 20,170 40,160 60,155 80,150 100,140 120,130 140,120 160,110 180,105 200,100 220,95 240,100 260,110 280,120 300,130 320,140 340,150 360,155 380,160" 
+                            fill="none" stroke="#2196F3" stroke-width="2" stroke-dasharray="5,5"/>
+                    </svg>
+                </div>
+                <div class="trend-insights">
+                    <h3>Key Insights</h3>
+                    <ul>
+                        <li>Equity markets showed 18% growth in Q1 2026</li>
+                        <li>Debt instruments stabilized at 5-6% returns</li>
+                        <li>Volatility decreased by 2.3% compared to previous quarter</li>
+                        <li>Gold prices inversely correlated with equity movements</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Performance Section -->
+            <section id="performance" class="content-section">
+                <h2>Fund Performance Analysis</h2>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <h3>Top Performers</h3>
+                        <table>
+                            <tr>
+                                <th>Fund</th>
+                                <th>1Y Return</th>
+                            </tr>
+                            <tr>
+                                <td>Kotak Emerging Equities</td>
+                                <td>+22.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Axis Bluechip Fund</td>
+                                <td>+18.5%</td>
+                            </tr>
+                            <tr>
+                                <td>HDFC Top 200 Fund</td>
+                                <td>+16.8%</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="performance-card">
+                        <h3>Underperformers</h3>
+                        <table>
+                            <tr>
+                                <th>Fund</th>
+                                <th>1Y Return</th>
+                            </tr>
+                            <tr>
+                                <td>Static Bond Fund</td>
+                                <td>+1.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Conservative Debt</td>
+                                <td>+2.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Savings Fund</td>
+                                <td>+3.1%</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="performance-card">
+                        <h3>Volatility Index</h3>
+                        <table>
+                            <tr>
+                                <th>Category</th>
+                                <th>Volatility</th>
+                            </tr>
+                            <tr>
+                                <td>Equity Funds</td>
+                                <td>14.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Balanced Funds</td>
+                                <td>8.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Debt Funds</td>
+                                <td>2.3%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Analysis Section -->
+            <section id="analysis" class="content-section">
+                <h2>Detailed Analysis Tools</h2>
+                <div class="analysis-tools">
+                    <div class="tool-card">
+                        <h3>Correlation Matrix</h3>
+                        <p>Analyze fund correlations and portfolio diversification</p>
+                        <button onclick="runAnalysis('correlation')">Run Analysis</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Risk Assessment</h3>
+                        <p>Calculate Sharpe ratio and other risk metrics</p>
+                        <button onclick="runAnalysis('risk')">Run Analysis</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Fund Benchmarking</h3>
+                        <p>Compare funds against market benchmarks</p>
+                        <button onclick="runAnalysis('benchmark')">Run Analysis</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Scenario Analysis</h3>
+                        <p>Simulate portfolio performance under different market scenarios</p>
+                        <button onclick="runAnalysis('scenario')">Run Analysis</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <h2>Report Generation</h2>
+                <div class="report-options">
+                    <div class="form-group">
+                        <label>Report Type:</label>
+                        <select id="reportType">
+                            <option>Market Summary</option>
+                            <option>Fund Performance</option>
+                            <option>Portfolio Analysis</option>
+                            <option>Risk Assessment</option>
+                            <option>Custom Report</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date Range:</label>
+                        <select>
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>Last 3 Months</option>
+                            <option>Last 1 Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Export Format:</label>
+                        <select>
+                            <option>PDF</option>
+                            <option>Excel</option>
+                            <option>CSV</option>
+                        </select>
+                    </div>
+                    <button class="submit-btn" onclick="generateAndExportReport()">Generate & Export</button>
+                </div>
+            </section>
+
+            <!-- Data Management Section -->
+            <section id="data" class="content-section">
+                <h2>Data Management</h2>
+                <div class="data-controls">
+                    <button onclick="updateData()">🔄 Update NAV Data</button>
+                    <button onclick="importData()">📥 Import Data</button>
+                    <button onclick="exportData()">📤 Export Data</button>
+                    <button onclick="validateData()">✓ Validate Database</button>
+                </div>
+                <div class="data-status">
+                    <h3>Data Status</h3>
+                    <table>
+                        <tr>
+                            <td>Last NAV Update</td>
+                            <td>Today, 02:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Total Records</td>
+                            <td>2,345,678</td>
+                        </tr>
+                        <tr>
+                            <td>Data Accuracy</td>
+                            <td>99.98%</td>
+                        </tr>
+                        <tr>
+                            <td>Database Size</td>
+                            <td>4.2 GB</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+</html>

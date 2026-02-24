@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Funds Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>💰 Mutual Funds Platform</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Mutual Funds Platform</h2>
+                <p>A comprehensive platform for understanding mutual funds, investment strategies, and financial growth</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="loginAs('investor')">Login as Investor</button>
+                    <button class="btn btn-secondary" onclick="loginAs('advisor')">Login as Advisor</button>
+                    <button class="btn btn-secondary" onclick="loginAs('admin')">Login as Admin</button>
+                    <button class="btn btn-secondary" onclick="loginAs('analyst')">Login as Analyst</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="chart-placeholder">📊</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Fund Exploration</h3>
+                    <p>Explore detailed information about various mutual funds, their performance metrics, and risk levels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Fund Comparison</h3>
+                    <p>Compare multiple funds side-by-side to make informed investment decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>My Portfolio</h3>
+                    <p>Track your investments and monitor portfolio performance in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍💼</div>
+                    <h3>Expert Advice</h3>
+                    <p>Get personalized investment advice from certified financial advisors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Reports</h3>
+                    <p>Access comprehensive analytics and detailed performance reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Education</h3>
+                    <p>Learn about investment strategies and mutual fund basics through our educational content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="login" class="login-section">
+        <div class="container">
+            <h2>Dashboard Access</h2>
+            <div class="login-info">
+                <p>Select your role to access the platform dashboard:</p>
+                <div class="role-buttons">
+                    <a href="/investor" class="role-card">
+                        <div class="role-icon">👤</div>
+                        <h3>Investor Dashboard</h3>
+                        <p>Explore funds, manage investments</p>
+                    </a>
+                    <a href="/advisor" class="role-card">
+                        <div class="role-icon">💼</div>
+                        <h3>Advisor Portal</h3>
+                        <p>Provide advice, create content</p>
+                    </a>
+                    <a href="/admin" class="role-card">
+                        <div class="role-icon">🔧</div>
+                        <h3>Admin Console</h3>
+                        <p>Manage platform, users, content</p>
+                    </a>
+                    <a href="/analyst" class="role-card">
+                        <div class="role-icon">📊</div>
+                        <h3>Analyst Dashboard</h3>
+                        <p>View analytics, generate reports</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Mutual Funds Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

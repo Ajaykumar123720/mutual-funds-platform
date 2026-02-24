@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mutual Funds Platform</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <button class="toggle-sidebar" id="sidebarToggle">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="showSection('dashboard')">📊 Dashboard</button>
+                <button class="nav-btn" onclick="showSection('users')">👥 User Management</button>
+                <button class="nav-btn" onclick="showSection('funds')">💰 Fund Management</button>
+                <button class="nav-btn" onclick="showSection('content')">📝 Content Management</button>
+                <button class="nav-btn" onclick="showSection('reports')">📈 Reports</button>
+                <button class="nav-btn" onclick="showSection('settings')">⚙️ Settings</button>
+                <button class="nav-btn" onclick="logout()">🚪 Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Admin Control Panel</h1>
+                <div class="user-info">
+                    <span>Administrator</span>
+                    <img src="/assets/avatar.png" alt="Admin" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23333%22/%3E%3C/svg%3E'">
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <h2>System Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <p class="stat-value">2,456</p>
+                        <p class="stat-label">+185 this month</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Funds</h3>
+                        <p class="stat-value">48</p>
+                        <p class="stat-label">All operational</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total AUM</h3>
+                        <p class="stat-value">₹5,234 Cr</p>
+                        <p class="stat-label">+12.5% YoY</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>System Status</h3>
+                        <p class="stat-value">100%</p>
+                        <p class="stat-label">Uptime: Excellent</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Management Section -->
+            <section id="users" class="content-section">
+                <h2>User Management</h2>
+                <div class="management-controls">
+                    <input type="text" placeholder="Search users..." class="search-input">
+                    <button onclick="addNewUser()">+ Add User</button>
+                </div>
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>U001</td>
+                            <td>Rajesh Kumar</td>
+                            <td>rajesh@example.com</td>
+                            <td>Investor</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editUser('U001')">Edit</button> <button onclick="deleteUser('U001')">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>U002</td>
+                            <td>Priya Singh</td>
+                            <td>priya@example.com</td>
+                            <td>Advisor</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editUser('U002')">Edit</button> <button onclick="deleteUser('U002')">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>U003</td>
+                            <td>Amit Patel</td>
+                            <td>amit@example.com</td>
+                            <td>Analyst</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editUser('U003')">Edit</button> <button onclick="deleteUser('U003')">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Fund Management Section -->
+            <section id="funds" class="content-section">
+                <h2>Fund Management</h2>
+                <div class="management-controls">
+                    <input type="text" placeholder="Search funds..." class="search-input">
+                    <button onclick="addNewFund()">+ Add Fund</button>
+                </div>
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Fund Name</th>
+                            <th>Category</th>
+                            <th>NAV</th>
+                            <th>AUM (₹ Cr)</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Axis Bluechip Fund</td>
+                            <td>Equity</td>
+                            <td>₹152.45</td>
+                            <td>₹3,245</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editFund('ABF')">Edit</button> <button onclick="viewFundDetails('ABF')">Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>HDFC Balanced Fund</td>
+                            <td>Balanced</td>
+                            <td>₹89.32</td>
+                            <td>₹1,567</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editFund('HBF')">Edit</button> <button onclick="viewFundDetails('HBF')">Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>ICICI Prudential Liquid</td>
+                            <td>Liquid</td>
+                            <td>₹1,245.67</td>
+                            <td>₹2,890</td>
+                            <td><span class="status-success">Active</span></td>
+                            <td><button onclick="editFund('IPL')">Edit</button> <button onclick="viewFundDetails('IPL')">Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Content Management Section -->
+            <section id="content" class="content-section">
+                <h2>Content Management</h2>
+                <div class="management-controls">
+                    <button onclick="createArticle()">+ Create Article</button>
+                    <button onclick="manageBanners()">Manage Banners</button>
+                </div>
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Author</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Understanding Mutual Funds</td>
+                            <td>Article</td>
+                            <td>Admin</td>
+                            <td>22 Feb 2026</td>
+                            <td><span class="status-success">Published</span></td>
+                            <td><button onclick="editContent('A001')">Edit</button> <button onclick="deleteContent('A001')">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Investment Tips Q1 2026</td>
+                            <td>Guide</td>
+                            <td>Admin</td>
+                            <td>20 Feb 2026</td>
+                            <td><span class="status-success">Published</span></td>
+                            <td><button onclick="editContent('G001')">Edit</button> <button onclick="deleteContent('G001')">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <h2>System Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>User Activity Report</h3>
+                        <p>Monitor user engagement and actions</p>
+                        <button onclick="generateReport('user-activity')">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Fund Performance Report</h3>
+                        <p>Detailed fund metrics and performance</p>
+                        <button onclick="generateReport('fund-performance')">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Transaction Report</h3>
+                        <p>All system transactions and audits</p>
+                        <button onclick="generateReport('transactions')">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>System Health Report</h3>
+                        <p>System performance and diagnostics</p>
+                        <button onclick="generateReport('system-health')">Generate Report</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <h2>System Settings</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Platform Name:</label>
+                        <input type="text" value="Mutual Funds Platform">
+                    </div>
+                    <div class="form-group">
+                        <label>Maintenance Mode:</label>
+                        <input type="checkbox"> Enable maintenance mode
+                    </div>
+                    <div class="form-group">
+                        <label>Admin Email:</label>
+                        <input type="email" value="admin@platform.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Session Duration (minutes):</label>
+                        <input type="number" value="120">
+                    </div>
+                    <button class="save-btn" onclick="saveSettings()">Save Settings</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+</html>
